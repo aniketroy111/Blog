@@ -34,7 +34,7 @@ class AuthService {
         try {
             return await this.account.createEmailSession(email,password)
         } catch (error) {
-            throw new Error(`Failed login:: ${error.message}`);
+            throw new Error(`Failed login: ${error.message}`);
         }
     }
 
@@ -42,8 +42,9 @@ class AuthService {
         try {
             return await this.account.get();
         } catch (error) {
-            throw new Error(`Failed to get current user:: ${error.message}`)
+            console.log("Appwrite service:: getCurrentUser:: error",error)
         }
+        return null;
     }
 
     async logout(){
