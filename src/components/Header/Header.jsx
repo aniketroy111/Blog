@@ -60,13 +60,11 @@ const Header = () => {
                 </li>
               ) : null
             )}
-            {
-              authStatus && (
+            {authStatus && (
                 <li>
                   <LogoutBtn/>
                 </li>
-              )
-            }
+              )}
           </ul>
         </nav>
       </Container>
