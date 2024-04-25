@@ -64,7 +64,7 @@ const Header = () => {
                 <li>
                   <LogoutBtn/>
                 </li>
-              )}
+              ) }
           </ul>
         </nav>
       </Container>
