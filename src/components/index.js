@@ -6,6 +6,7 @@ import Container from "./container/Container";
 import Input from "./Input";
 import Button from './Button'
 import Select from './Select';
+import RTE from "./RTE";
 export {
     Header,
     Footer,
@@ -15,5 +16,6 @@ export {
     Button,
     Select,
     Input,
+    RTE,
 
 }

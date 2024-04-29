@@ -16,13 +16,13 @@ export class Service{
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title,content,uploadedImage,status,userId}){
+    async createPost({slug,title,content,uploadedImage,status,userId}){
         try {
             const uniqueId = ID.unique();
             return await this.databases.createDocument(
                 confi.appwriteDatabaseId,
                 confi.appwriteCollectionId,
-                uniqueId,
+                slug,
                 {
                     title,
                     content,
@@ -36,12 +36,12 @@ export class Service{
         }
     }
 
-    async updatePost(uniqueId,{title,content,uploadedImage,status}){
+    async updatePost(slug,{title,content,uploadedImage,status}){
         try {
             return await this.databases.updateDocument(
                 confi.appwriteDatabaseId,
                 confi.appwriteCollectionId,
-                uniqueId,
+                slug,
                 {
                     title,
                     content,
@@ -55,12 +55,12 @@ export class Service{
         }
     }
 
-    async deletePost(uniqueId){
+    async deletePost(slug){
         try {
             await this.databases.deleteDocument(
                 confi.appwriteDatabaseId,
                 confi.appwriteCollectionId,
-                uniqueId
+                slug
             )
             return true;
         } catch (error) {
@@ -69,12 +69,12 @@ export class Service{
         }
     }
 
-    async getPost(uniqueId){
+    async getPost(slug){
         try {
             return await this.databases.getDocument(
                 confi.appwriteDatabaseId,
                 confi.appwriteCollectionId,
-                uniqueId
+                slug
             )
             
         } catch (error) {
