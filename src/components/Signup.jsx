@@ -6,13 +6,13 @@ import authService from "../appwrite/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../feature/authentication/authSlice";
 
-const Singup = () => {
-  const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm();
-  const dispatch = useDispatch();
+const Signup = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
 
-  const signup = async (data) => {
+  const create = async (data) => {
     setError("");
     try {
       const userData = await authService.createUserAccount(data);
@@ -50,7 +50,7 @@ const Singup = () => {
           </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(signup)}>
+        <form onSubmit={handleSubmit(create)}>
           <div className="space-y-5">
             <Input
               label="Name: "
@@ -93,4 +93,4 @@ const Singup = () => {
   );
 };
 
-export default Singup;
+export default Signup;

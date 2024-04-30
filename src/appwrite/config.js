@@ -89,7 +89,7 @@ export class Service{
                 confi.appwriteDatabaseId,
                 confi.appwriteCollectionId,
                 [
-                    Query.equal("statu","active")
+                    Query.equal("status","active")
                 ]
             )
         } catch (error) {

@@ -8,17 +8,17 @@ class AuthService {
     constructor(){
         this.client
         .setEndpoint(confi.appwriteUrl)
-        .setProject(confi.appwriteProjectId);
+        .setProject(confi.appwriteProjectId)
 
         this.account = new Account();
     }
 
     async createUserAccount({email,password,name}){
         try {
-            const userAccount = await this.account.create(ID.unique(),email,password);
+            const userAccount = await this.account.create(ID.unique(),email,password,name);
 
             if(userAccount){
-                return this.login(email,password);
+                return this.login({email,password});
             }
             else{
                 return userAccount;
@@ -34,7 +34,7 @@ class AuthService {
         try {
             return await this.account.createEmailSession(email,password)
         } catch (error) {
-            throw new Error(`Failed login: ${error.message}`);
+            throw error;
         }
     }
 
@@ -42,7 +42,7 @@ class AuthService {
         try {
             return await this.account.get();
         } catch (error) {
-            console.log("Appwrite service:: getCurrentUser:: error",error)
+            throw new Error(`Appwrite service getcurrentuser: error: ${error.message}`);
         }
         return null;
     }
